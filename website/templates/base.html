@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <style>
+        .navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: right;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Style for the header */
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+header h2 {
+    margin-top: 10px;
+    color: #555;
+}
+    </style>
+
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li>
+                <a class="signup" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+            <li>
+                <a href="{% url 'login' %}">Login</a>
+            </li>
+        </ul>
+    </div>
+    <header>
+        <h1>News Website</h1>
+        <h2></h2>
+    </header>
+
+    
+
+
+</body>
+
+</html>

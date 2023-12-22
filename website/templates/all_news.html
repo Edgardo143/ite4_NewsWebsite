@@ -1,0 +1,25 @@
+<!-- all_news.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All News</title>
+</head>
+<body>
+    <h1>All News</h1>
+    {% if all_news %}
+        <ul>
+            {% for news_item in all_news %}
+                <li>
+                    <h3>{{ news_item.title }}</h3>
+                    <p>{{ news_item.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No news available.</p>
+    {% endif %}
+</body>
+</html>

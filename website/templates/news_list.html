@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News List</title>
+    <style>
+        body {
+            background-image: url('static/newss.jpg');
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .news-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .news-item h3 {
+            margin-top: 0;
+        }
+
+        .news-item p {
+            margin-bottom: 10px;
+        }
+
+        /* Delete News button styles */
+        .delete-news {
+            background-color: #ff3333;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px 10px;
+            transition-duration: 0.4s;
+        }
+
+        .delete-news:hover {
+            background-color: #ff6666;
+        }
+
+        .delete-news a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .add-news {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: green; /* Retain the Add News button style */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+        .edit-news {
+    display: inline-block;
+    background-color: blue;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition-duration: 0.4s;
+}
+
+.edit-news a {
+    color: white;
+    text-decoration: none;
+}
+
+.edit-news:hover {
+    background-color: skyblue;
+}
+
+.news-item img {
+            width: 300px;
+            height: auto;
+}
+.navbar form {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .navbar label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .navbar select {
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .navbar input[type="submit"] {
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+        }
+        .read-more {
+            background-color: #2e0f0f;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px 10px;
+            transition-duration: 0.4s;
+        }
+
+        .read-more:hover {
+            background-color: #000000;
+        }
+
+        .read-more a {
+            text-decoration: none;
+            color: white;
+        }
+        .read-more.news-item img {
+            width: 300px;
+            height: auto;
+        }
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back:hover {
+            background-color: #555;
+        }
+        
+    </style>   
+</head>
+<body>
+    <div class="navbar">
+        <form action="{% url 'filter_by_category' %}" method="get">
+            <label for="category">Select a Category:</label>
+            <select id="category" name="category">
+                <option value="all">All</option>
+                <option value="politics">Politics</option>
+                <option value="sports">Sports</option>
+                <option value="entertainment">Entertainment</option>
+            </select>
+        </form>
+        <ul>
+            <li>
+                <a class="add-news" href="{% url 'addnews' %}">Add News</a>
+            </li>
+        </ul>
+    </div>
+    <a class="back" href="{% url 'home' %}">Back to home</a>
+    <h1 class="news-heading">Latest News</h1>
+
+    {% for news_item in latest_news %}
+    <div class="news-item" data-category="{{ news_item.category }}"></div>
+        <h3>{{ news_item.title }}</h3>
+        <p>{{ news_item.description }}</p>
+        <p>Date: {{ news_item.date }}</p>
+        {% if news_item.image %}
+            <img src="{{ news_item.image.url }}" alt="News Image">
+            <button class="delete-news"><a href="{% url 'delete_news' news_item.id %}">Delete News</a></button>
+            <button class="edit-news"><a href="{% url 'news_edit' news_item.id %}">Edit News</a></button>
+            <button class="read-more"><a href="{% url 'news_detail' news_item.id %}">Read More</a></button>
+        {% endif %}
+    </div>
+    {% endfor %}
+</body>
+</html>

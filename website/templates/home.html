@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+</head>
+<style>
+    .navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: right;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar a {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+/* Style for the header */
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+header h2 {
+    margin-top: 10px;
+    color: #555;
+}
+</style>
+<body style="display: flex; flex-direction: column; height: 100vh;">
+    <div class="navbar">
+        <ul>
+            <li>
+                <a href="{% url 'news_list' %}">News List</a>
+                
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <header> 
+        <h1>News Website</h1>
+        <p>Welcome to my news portal!</p>
+    </header>
+
+    <div style="flex: 1;">
+    </div>
+    <footer style="text-align: center; background-color: #f5f5f5; padding: 10px 0;">
+        <p>&copy; 2023 News Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

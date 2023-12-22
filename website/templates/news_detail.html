@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'news_detail.css' %}">
+    <title>News Detail</title>
+    <style>
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<a class="back" href="{% url 'news_list' %}">Back to news list</a>
+<body>
+    <h1>{{ news_item.title }}</h1>
+    <img src="{{ news_item.image.url }}" alt="News Image">
+    <p>{{ news_item.description }}</p>
+    <p>Date: {{ news_item.date }}</p>
+</body>
+</html>
